@@ -1,0 +1,68 @@
+from curses import noecho, endwin, initscr, wrapper
+stdscr = initscr()
+noecho()
+def create_perso(depart):
+    di = {"repr" : "\U0001F381"}
+    di['x'] = depart[0]
+    di['y'] = depart[1]
+    return di
+p=(0,0)
+create_perso(p)
+d = create_perso(p)
+dico = {0:'..', 1: 'XX',2:'\U0001F462'}
+mat = [  [0, 0, 0, 1, 0, 0, 0],       
+         [0, 1, 0, 0, 0, 2, 0],
+         [0, 1, 0, 0, 1, 0, 0],
+         [0, 0, 1, 0, 0, 0, 0],
+         [0, 0, 0, 1, 0, 2, 0],
+         [1, 0, 0, 1, 0, 1, 0],
+         [0, 0, 2, 0, 0, 2, 1]]
+def display_map_and_char(m,d,p):
+    L=[]
+    for i in range(len(m)):
+        l=[]
+        for j in range(len(m[i])):
+            
+            a = d[m[i][j]]
+            l+=[a]
+        L+=[l]
+    return L
+
+carte = display_map_and_char(mat,dico,d) 
+        
+def start_screen():
+    stdscr.clear()
+    stdscr.addstr(4,4,"Push any button to Start the game ")
+    stdscr.refresh()
+    stdscr.getch() 
+
+def main(stdscr):
+    start_screen()
+    while True:
+        for i in range(len(carte)): # i = numéro de ligne
+            for j in range(len(carte[i])): # j = numéro de col
+                if d["x"] == j and d["y"] == i:
+                   a=d["repr"]
+                elif carte[i][j]== 0 and (j,i) in dico:
+                    a='\U0001F381'
+                else:
+                    a='%s' %(carte[i][j])
+                stdscr.addstr((2*j)+10,(4*i)+10,a)
+                
+        stdscr.refresh()        
+        letter = stdscr.getkey()
+        if letter =='z' and d['x'] > 0 : d['x'] -= 1
+        if letter =='s' and d['x']+1 < len(mat) : d['x'] += 1
+        if letter =='d' and d['y']+1 < len(mat[0]) : d['y'] += 1
+        if letter =='q' and d['y'] > 0 : d['y'] -= 1
+        if mat[d['y']][d['x']] == 1 and d['x'] > 0 : 
+                    d['x'] -=1
+        
+        stdscr.refresh()
+
+
+
+
+
+wrapper(main)
+endwin()
