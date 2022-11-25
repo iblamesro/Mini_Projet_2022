@@ -67,3 +67,6 @@ display_map(mat,dico)
 print(perso)
 mat_abscisse_max=3
 mat_ordonnée_max=10
+
+
+#18/11
