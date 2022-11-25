@@ -68,7 +68,7 @@ def display_map_char_and_objects(m,d,p,objets): #objets= s
 
 display_map_char_and_objects(carte,dico,perso,obstacle)
 
-#21/11
+#21/11/2022
 
 
 
