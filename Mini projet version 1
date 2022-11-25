@@ -1,0 +1,69 @@
+def display_map(m,d): 
+    for x in range (len(m)):
+        print("\n")
+        for u in m[x]:
+            print(d[u], end=" ")
+    return '' 
+
+
+carte =[[0, 0, 0, 1, 0, 0, 0],[0, 1, 0, 0, 0, 0, 0],[0, 1, 0, 0, 1, 0, 0],[0, 0, 1, 0, 0, 0, 0]]
+dico = {0:'.', 1: 'x'}
+#print(display_map(carte,dico))
+
+def create_perso(depart):
+    di = {"repr" : "o"}
+    di['x'] = depart[0]
+    di['y'] = depart[1]
+    return di
+
+p = (0,0)
+print(create_perso(p))
+
+
+carte =[[0, 0, 0, 1, 0, 0, 0],[0, 1, 0, 0, 0, 0, 0],[0, 1, 0, 0, 1, 0, 0],[0, 0, 1, 0, 0, 0, 0]]
+dico = {0:'.', 1: 'x'}
+#print(display_map(carte,dico))
+
+def display_map_and_char(m,d,p):
+    for i in range(len(m)):
+        for j in range(len(m[i])):
+            if i==p['x'] and j==p['y']:
+                print(p['repr'],end='')
+            elif m[i][j] in d:
+                print (d[m[i][j]],end='')
+    return   
+
+perso = {'repr': 'o', 'x': 0, 'y': 0}
+carte =[[0, 0, 0, 1, 0, 0, 0],[0, 1, 0, 0, 0, 0, 0],[0, 1, 0, 0, 1, 0, 0],[0, 0, 1, 0, 0, 0, 0]]
+dico = {0:'.', 1: 'x'}
+display_map_and_char(carte,dico,perso)
+
+
+def update_p(letter,p):
+    if letter == 's':
+        perso['x']+=1
+    elif letter == 'q':
+        perso['y']-=1
+    elif letter == 'z':
+        perso['x']-=1
+    elif letter=='d':
+        perso['y']+1
+
+def update_p(mat, letter, perso):
+    if letter=='s' and perso ['x']< mat_abscisse_max:
+        perso['x']+=1
+    elif letter=='q' and perso['y']>0:
+        perso['y']-=1
+    elif letter=='z' and perso ['x']>0:
+        perso['x']-=1
+    elif letter=='d' and perso ['y']< mat_ordonnée_max:
+        perso['y']+=1
+    else:
+        print("\n error, la lettre et/ou la position est fausse")
+        
+mat=[[0,0,0,1,0,0,0],[0,1,0,0,1,0,0],[0,0,0,0,1,0,0],[1,0,1,0,0,0,1]]
+dico={0:'_',1:'å'}
+display_map(mat,dico)
+print(perso)
+mat_abscisse_max=3
+mat_ordonnée_max=10
