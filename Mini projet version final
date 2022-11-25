@@ -1,0 +1,75 @@
+import random
+    
+#display_map_char_and_objects(carte,dico,perso,{(3, 3), (6, 1), (6, 3), (6, 2), (5, 1), (5, 2)})
+        
+#3.4.2
+
+
+n = random.randint(3,10)
+k = random.randint(3,10) 
+mat=[[0,0,0,1,0,0,0],[0,1,0,0,1,0,0],[0,0,0,0,1,0,0],[1,0,1,0,0,0,1]]
+dico = {0:'_', 1: '#', 2: '/'}
+carte =[[0, 0, 0, 1, 0, 2, 0],[0, 1, 0, 0, 0, 2, 0],[2, 1, 0, 0, 1, 0, 0],[0, 0, 1, 0, 2, 2, 0]]
+
+perso = {'repr': 'o', 'x': 0, 'y': 0, 'score' : 0}
+
+
+def create_objects(rand,carte):
+    s = set()
+    while len(s)< rand:
+        x = random.randint(0, len(carte[0])-1)
+        y = random.randint(0,len(carte)-1)
+        s.add((x,y)) 
+    return s 
+
+obstacle = create_objects(n,carte)
+
+    
+    
+def update_objects(p,s):
+    if (p["x"],p["y"]) in (obstacle):
+        obstacle.discard(((p["x"]),(p["y"])))
+        p["score"] += 1
+        
+def update_pinollee(mat, letter, perso, carte):
+    letter = str(input("entre dep"))
+    if letter=='s' and perso ['y']< ((len(carte))-1):
+        if carte[(perso['y'])][(perso['x'])]==1:
+            perso['y']+=1
+    elif letter=='q' and perso['x']>=0:
+        if carte[(perso['y'])][(perso['x']-1)]!=2:
+            perso['x']-=1
+        else:
+            print("\n Erreur, la touche indiquée ou la position n'est pas bonne")
+    elif letter=='z' and perso ['y']>0:
+        if carte[(perso['y'])][(perso['x'])]==1:
+            perso['y']+=-1
+    elif letter=='d' and perso ['x']< ((len(carte[0])-1)):
+        if carte[(perso['y'])][(perso['x']+1)]!=2:
+            perso['x']+=1
+    else:
+        print("\n Erreur, la touche indiquée ou la position n'est pas bonne")
+    update_objects(perso, obstacle)
+    display_map_char_and_objects(carte,dico,perso,obstacle)
+    
+
+def display_map_char_and_objects(m,d,p,objets): #objets= s
+    for i in range(len(m)):
+        for j in range(len(m[i])):#i,j les lignes,colonnes
+            if p["x"] == j and p["y"] == i:
+                print(p["repr"], end='')
+            elif m[i][j]== 0 and (j,i) in objets:
+                print('$',end='')
+            else:
+                print(d[m[i][j]],end='')
+        print()
+    print("score : ", str(p["score"]))
+    return update_pinollee(mat, 'z', perso, carte)
+
+display_map_char_and_objects(carte,dico,perso,obstacle)
+
+#21/11
+
+
+
+
