@@ -313,3 +313,5 @@ def display_map_char_and_objects(m,d,p,objects): #objects = s
     return update_pinollee(mat, 'z', perso, carte)
 
 display_map_char_and_objects(carte,dico,perso,nol)
+
+#19/11
