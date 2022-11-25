@@ -1,0 +1,315 @@
+import random
+
+
+
+
+def display_map(m,d): 
+    for x in range (len(m)):
+        print("\n")
+        for u in m[x]:
+            print(d[u], end=" ")
+    return '' 
+
+
+carte =[[0, 0, 0, 1, 0, 0, 0],[0, 1, 0, 0, 0, 0, 0],[0, 1, 0, 0, 1, 0, 0],[0, 0, 1, 0, 0, 0, 0]]
+#dico = {0:'.', 1: 'x'}
+#print(display_map(carte,dico))
+
+def create_perso(depart):
+    di = {"repr" : "o"}
+    di['x'] = depart[0]
+    di['y'] = depart[1]
+    return di
+
+p = (0,0)
+#print(create_perso(p))
+
+
+carte =[[0, 0, 0, 1, 0, 0, 0],[0, 1, 0, 0, 0, 0, 0],[0, 1, 0, 0, 1, 0, 0],[0, 0, 1, 0, 0, 0, 0]]
+#dico = {0:'.', 1: 'x'}
+#print(display_map(carte,dico))
+
+
+#2.2
+def display_map_and_char(m,d,p):
+    for i in range(len(m)):
+        for j in range(len(m[i])):
+            if i==p['y'] and j==p['x']:
+                print(p['repr'],end='')
+            elif m[i][j] in d:
+                print (d[m[i][j]],end='')
+        print()
+
+#perso = {'repr': 'o', 'x': 0, 'y': 0}
+carte =[[0, 0, 0, 1, 0, 0, 0],[0, 1, 0, 0, 0, 0, 0],[0, 1, 0, 0, 1, 0, 0],[0, 0, 1, 0, 0, 0, 0]]
+#dico = {0:'.', 1: 'x'}
+#display_map_and_char(carte,dico,perso)
+
+
+
+
+def update_p(letter,p):
+    if letter == 's':
+        perso['x']+=1
+    elif letter == 'q':
+        perso['y']-=1
+    elif letter == 'z':
+        perso['x']-=1
+    elif letter=='d':
+        perso['y']+1
+
+def update_p(mat, letter, perso):
+    if letter=='s' and perso ['x']< mat_abscisse_max:
+        perso['x']+=1
+    elif letter=='q' and perso['y']>0:
+        perso['y']-=1
+    elif letter=='z' and perso ['x']>0:
+        perso['x']-=1
+    elif letter=='d' and perso ['y']< mat_ordonnéemax:
+        perso['y']+=1
+    else:
+        print("\n error, la lettre et/ou la position est fausse")
+
+mat=[[0,0,0,1,0,0,0],[0,1,0,0,1,0,0],[0,0,0,0,1,0,0],[1,0,1,0,0,0,1]]
+#dico={0:'',1:'å'}
+#display_map(mat,dico)
+#print(perso)
+mat_abscisse_max=3
+mat_ordonnée_max=10
+
+
+##14:00 18/11 2.3 + 2.4?
+def update_pin(mat, letter, perso):
+    letter = str(input("entre dep"))
+    if letter=='s' and perso ['y']< mat_abscisse_max:
+        perso['y']+=1
+    elif letter=='q' and perso['x']>0:
+        perso['x']-=1
+    elif letter=='z' and perso ['y']>0:
+        perso['y']-=1
+    elif letter=='d' and perso ['x']< mat_ordonnée_max:
+        perso['x']+=1
+    else:
+        print("\n error, la lettre et/ou la position est fausse")
+    print(display_map_and_charee(carte,dico,perso))
+        
+        
+def display_map_and_charee(m,d,p):
+    for i in range(len(m)):
+        for j in range(len(m[i])):
+            if i==p['y'] and j==p['x']:
+                print(p['repr'],end='')
+            elif m[i][j] in d:
+                print (d[m[i][j]],end='')
+        print()
+    letter = 'z'
+    return update_pin(mat,letter,perso)
+
+#display_map_and_charee(carte,dico,perso)
+
+
+
+##14:40 3.1
+def update_pinol(mat, letter, perso, carte):
+    letter = str(input("entre dep"))
+    if letter=='s' and perso ['y']< ((len(carte))-1):
+        perso['y']+=1
+    elif letter=='q' and perso['x']>0:
+        perso['x']-=1
+    elif letter=='z' and perso ['y']>0:
+        perso['y']-=1
+    elif letter=='d' and perso ['x']< ((len(carte[0])-1)):
+        perso['x']+=1
+    else:
+        print("\n error, la lettre et/ou la position est fausse")
+    print(display_map_and_chareeh(carte,dico,perso))
+    
+mat=[[0,0,0,1,0,0,0],[0,1,0,0,1,0,0],[0,0,0,0,1,0,0],[1,0,1,0,0,0,1]]
+#dico={0:'',1:'å'}
+carte =[[0, 0, 0, 1, 0, 0, 0],[0, 1, 0, 0, 0, 0, 0],[0, 1, 0, 0, 1, 0, 0],[0, 0, 1, 0, 0, 0, 0]]
+#display_map(mat,dico)
+#print(perso)
+mat_abscisse_max=3
+mat_ordonnée_max=10
+    
+def display_map_and_chareeh(m,d,p):
+    for i in range(len(m)):
+        for j in range(len(m[i])):
+            if i==p['y'] and j==p['x']:
+                print(p['repr'],end='')
+            elif m[i][j] in d:
+                print (d[m[i][j]],end='')
+        print()
+    letter = 'z'
+    return update_pinol(mat,letter,perso,carte)
+        
+
+#display_map_and_chareeh(carte,dico,perso)
+
+#15:00 3.2
+
+#mat=[[0,0,0,1,0,0,0],[0,1,0,0,1,0,0],[0,0,0,0,1,0,0],[1,0,1,0,0,0,1]]
+#dico = {0:'_', 1: '#'}
+#carte =[[0, 0, 0, 1, 0, 0, 0],[0, 1, 0, 0, 0, 0, 0],[0, 1, 0, 0, 1, 0, 0],[0, 0, 1, 0, 0, 0, 0]]
+#display_map(mat,dico)
+#print(perso)
+#perso = {'repr': 'o', 'x': 0, 'y': 0}
+#mat_abscisse_max=3
+#mat_ordonnée_max=10
+
+
+def update_pinoll(mat, letter, perso, carte):
+    letter = str(input("entre dep"))
+    if letter=='s' and perso ['y']< ((len(carte))-1):
+        if carte[(perso['y'])][(perso['x'])]==1:
+            perso['y']+=1
+    elif letter=='q' and perso['x']>0:
+        perso['x']-=1
+    elif letter=='z' and perso ['y']>0:
+        if carte[(perso['y'])][(perso['x'])]==1:
+            perso['y']+=-1
+    elif letter=='d' and perso ['x']< ((len(carte[0])-1)):
+        perso['x']+=1
+    else:
+        print("\n error, la lettre et/ou la position est fausse")
+    print(display_map_and_chareeho(carte,dico,perso))
+
+    
+def display_map_and_chareeho(m,d,p):
+    for i in range(len(m)):
+        for j in range(len(m[i])):
+            if i==p['y'] and j==p['x']:
+                print(p['repr'],end='')
+            elif m[i][j] in d:
+                print (d[m[i][j]],end='')
+        print()
+    letter = 'z'
+    return update_pinoll(mat,letter,perso,carte)
+        
+
+#display_map_and_chareeho(carte,dico,perso)
+
+
+
+#3.4
+
+#n = random.randint(0,10)
+#mat=[[0,0,0,1,0,0,0],[0,1,0,0,1,0,0],[0,0,0,0,1,0,0],[1,0,1,0,0,0,1]]
+#dico = {0:'_', 1: '#'}
+#carte =[[0, 0, 0, 1, 0, 0, 0],[0, 1, 0, 0, 0, 0, 0],[0, 1, 0, 0, 1, 0, 0],[0, 0, 1, 0, 0, 0, 0]]
+#display_map(mat,dico)
+#print(perso)
+#perso = {'repr': 'o', 'x': 0, 'y': 0, 'score' : 0}
+#mat_abscisse_max=3
+#mat_ordonnée_max=10
+
+
+def create_objects(rand,carte):
+    s = set() # ensemble vide
+    while len(s)< rand:
+        x = random.randint(0, len(carte[0])-1) #prend un x aléatoir
+        y = random.randint(0,len(carte)-1)# len(m) sort de M
+        s.add((x,y)) # s va prendre toutes les positions des objects
+    print(s)
+
+#create_objects(n,carte)
+
+
+#def update_pinollee(mat, letter, perso, carte):
+    letter = str(input("entre dep"))
+    if letter=='s' and perso ['y']< ((len(carte))-1):
+        if carte[(perso['y'])][(perso['x'])]==1:
+            perso['y']+=1
+    elif letter=='q' and perso['x']>0:
+        perso['x']-=1
+    elif letter=='z' and perso ['y']>0:
+        if carte[(perso['y'])][(perso['x'])]==1:
+            perso['y']+=-1
+    elif letter=='d' and perso ['x']< ((len(carte[0])-1)):
+        perso['x']+=1
+    else:
+        print("\n error, la lettre et/ou la position est fausse")
+    display_map_char_and_objects(carte,dico,perso,{(3, 3), (6, 1), (6, 3), (6, 2), (5, 1), (5, 2)})
+    
+    
+def display_map_char_and_objects(m,d,p,objects): #objects = s
+    for i in range(len(m)): # i = numéro de ligne
+        for j in range(len(m[i])): # j = numéro de col
+            if p["x"] == j and p["y"] == i:
+                print(p["repr"], end='')
+            elif m[i][j]== 0 and (j,i) in objects:
+                print(' \U0001F381',end='')
+            else:
+                print(d[m[i][j]],end='')
+        print()
+    print("score : ", str(p["score"]))
+    return update_pinollee(mat, 'z', perso, carte)
+    
+    
+
+    
+    
+#display_map_char_and_objects(carte,dico,perso,{(3, 3), (6, 1), (6, 3), (6, 2), (5, 1), (5, 2)})
+        
+#3.4.2
+
+
+n = random.randint(0,10)
+mat=[[0,0,0,1,0,0,0],[0,1,0,0,1,0,0],[0,0,0,0,1,0,0],[1,0,1,0,0,0,1]]
+dico = {0:'_', 1: '#'}
+carte =[[0, 0, 0, 1, 0, 0, 0],[0, 1, 0, 0, 0, 0, 0],[0, 1, 0, 0, 1, 0, 0],[0, 0, 1, 0, 0, 0, 0]]
+
+perso = {'repr': 'o', 'x': 0, 'y': 0, 'score' : 0}
+
+
+def create_objects(rand,carte):
+    s = set() # ensemble vide
+    while len(s)< rand:
+        x = random.randint(0, len(carte[0])-1) #prend un x aléatoir
+        y = random.randint(0,len(carte)-1)# len(m) sort de M
+        s.add((x,y)) # s va prendre toutes les positions des objects
+        nol = s
+    return s 
+    
+create_objects(n,carte)
+nol = create_objects(n,carte)
+
+    
+    
+def update_objects(p,s):
+    if (p["x"],p["y"]) in (nol):
+        nol.discard(((p["x"]),(p["y"])))
+        p["score"] += 1
+        
+def update_pinollee(mat, letter, perso, carte):
+    letter = str(input("entre dep"))
+    if letter=='s' and perso ['y']< ((len(carte))-1):
+        if carte[(perso['y'])][(perso['x'])]==1:
+            perso['y']+=1
+    elif letter=='q' and perso['x']>0:
+        perso['x']-=1
+    elif letter=='z' and perso ['y']>0:
+        if carte[(perso['y'])][(perso['x'])]==1:
+            perso['y']+=-1
+    elif letter=='d' and perso ['x']< ((len(carte[0])-1)):
+        perso['x']+=1
+    else:
+        print("\n error, la lettre et/ou la position est fausse")
+    update_objects(perso, nol)
+    display_map_char_and_objects(carte,dico,perso,nol)
+    
+
+def display_map_char_and_objects(m,d,p,objects): #objects = s
+    for i in range(len(m)): # i = numéro de ligne
+        for j in range(len(m[i])): # j = numéro de col
+            if p["x"] == j and p["y"] == i:
+                print(p["repr"], end='')
+            elif m[i][j]== 0 and (j,i) in objects:
+                print(' $',end='')
+            else:
+                print(d[m[i][j]],end='')
+        print()
+    print("score : ", str(p["score"]))
+    return update_pinollee(mat, 'z', perso, carte)
+
+display_map_char_and_objects(carte,dico,perso,nol)
